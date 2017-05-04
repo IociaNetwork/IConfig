@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 /**
  * Manages the configuration data which is saved to and accessed from the system file.
  */
-public class ConfigHandler extends FileLoader {
+public abstract class ConfigHandler extends FileLoader {
 
     /*---Constructors---*/
     /**

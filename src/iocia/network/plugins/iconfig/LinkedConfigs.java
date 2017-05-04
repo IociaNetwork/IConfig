@@ -94,6 +94,7 @@ public class LinkedConfigs<T> {
             return false;
         configMap.put(key, new IConfig(directory, filename));
         configMap.get(key).addDefaults(defaults);
+        configMap.get(key).options().copyDefaults(true);
         return true;
     }
 

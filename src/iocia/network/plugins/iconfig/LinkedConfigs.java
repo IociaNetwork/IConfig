@@ -18,6 +18,7 @@ public class LinkedConfigs<T> {
     /*---Data---*/
     private Map<T, IConfig> configMap;
     private final File directory;
+    private Map<String, Object> defaults;
 
     /*---Constructors---*/
     /**
@@ -29,6 +30,7 @@ public class LinkedConfigs<T> {
     public LinkedConfigs(File directory) {
         configMap = new HashMap<T, IConfig>();
         this.directory = directory;
+        defaults = new HashMap<>();
     }
 
     /**
@@ -91,6 +93,8 @@ public class LinkedConfigs<T> {
         if (configMap.containsKey(key) && !overwrite)
             return false;
         configMap.put(key, new IConfig(directory, filename));
+        configMap.get(key).addDefaults(defaults);
+        configMap.get(key).options().copyDefaults(true);
         return true;
     }
 
@@ -118,12 +122,32 @@ public class LinkedConfigs<T> {
     }
 
     /**
+     * Returns the configuration mapped to the given key.
+     * @param key Key with which the configuration is mapped to.
+     * @return {@link IConfig} object mapped to the key, or null if no mapping exists.
+     */
+    public IConfig get(T key) {
+        return configMap.get(key);
+    }
+
+    /**
      * Saves all, currently registered configs.
      * @throws IOException If there is an I/O problem with any of the registered configs.
      */
     public void saveAll() throws IOException {
         for (IConfig config : configMap.values())
             config.save();
+    }
+
+    /**
+     * Adds a default configuration option that will be automatically added
+     * to each newly registered configuration file. Will NOT overwrite an
+     * already existing configuration value over multiple reloads.
+     * @param key Configuration key.
+     * @param value Configuration value.
+     */
+    public void addDefault(String key, Object value) {
+        defaults.put(key, value);
     }
 
 }

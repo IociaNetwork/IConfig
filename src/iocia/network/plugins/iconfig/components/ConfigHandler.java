@@ -154,8 +154,9 @@ public abstract class ConfigHandler extends FileLoader {
      * @throws IOException If an I/O error occurs while reading or writing.
      * @see CopyOption for information regarding the extra options.
      */
-    public void copyPremadeConfig(InputStream internalFile, CopyOption... options) throws IOException {
+    public void copyPremadeConfig(InputStream internalFile, CopyOption... options) throws IOException, InvalidConfigurationException {
         Files.copy(internalFile, Paths.get(systemFile.getAbsolutePath()), options);
+        load(systemFile);
     }
 
 }

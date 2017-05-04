@@ -140,6 +140,12 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /*---Methods---*/
+
+    /**
+     * Used to determine if the configuration file had been created
+     * for the first time.
+     * @return true if newly created; false if not.
+     */
     public boolean isFirstLoad() {
         return isFirstLoad;
     }

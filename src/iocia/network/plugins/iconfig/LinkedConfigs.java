@@ -122,6 +122,15 @@ public class LinkedConfigs<T> {
     }
 
     /**
+     * Returns the configuration mapped to the given key.
+     * @param key Key with which the configuration is mapped to.
+     * @return {@link IConfig} object mapped to the key, or null if no mapping exists.
+     */
+    public IConfig get(T key) {
+        return configMap.get(key);
+    }
+
+    /**
      * Saves all, currently registered configs.
      * @throws IOException If there is an I/O problem with any of the registered configs.
      */

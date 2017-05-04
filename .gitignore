@@ -34,3 +34,5 @@ IConfig.iml
 .idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml
 
 .idea/kotlinc.xml
+
+.idea/uiDesigner.xml

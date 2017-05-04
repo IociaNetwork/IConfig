@@ -1,0 +1,4 @@
+name: IConfig
+main: iocia.network.plugins.iconfig.IConfigMain
+version: 1.0.0
+author: Hunky524

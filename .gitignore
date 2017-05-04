@@ -32,3 +32,7 @@ IConfig.iml
 .idea/libraries/Maven__org_spigotmc_spigot_api_1_11_2_R0_1_SNAPSHOT.xml
 
 .idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml
+
+.idea/kotlinc.xml
+
+.idea/uiDesigner.xml

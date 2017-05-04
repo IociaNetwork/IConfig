@@ -5,6 +5,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Manages the configuration data which is saved to and accessed from the system file.
@@ -138,6 +142,20 @@ public class ConfigHandler extends FileLoader {
      */
     public void save() throws IOException {
         save(systemFile);
+    }
+
+    /**
+     * Copies the exact Byte data of the given stream to the system file.
+     * Used to pre-define the exact look and layout of a configuration files.
+     * This means initial configuration files can be created with commented lines
+     * anywhere and the exact order of the configuration options can be controlled.
+     * @param internalFile InputStream of the internal jar file to copy.
+     * @param options Used to specify extra options when copying the file.
+     * @throws IOException If an I/O error occurs while reading or writing.
+     * @see CopyOption for information regarding the extra options.
+     */
+    public void copyPremadeConfig(InputStream internalFile, CopyOption... options) throws IOException {
+        Files.copy(internalFile, Paths.get(systemFile.getAbsolutePath()), options);
     }
 
 }

@@ -140,5 +140,8 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /*---Methods---*/
+    public boolean isFirstLoad() {
+        return isFirstLoad;
+    }
 
 }

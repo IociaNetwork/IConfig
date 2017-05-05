@@ -44,3 +44,4 @@ target/classes/iocia/network/plugins/iconfig/IConfigMain.class
 target/classes/iocia/network/plugins/iconfig/LinkedConfigs.class
 target/classes/iocia/network/plugins/iconfig/PlayerConfigs.class
 target/classes/plugin.yml
+out/artifacts/IConfig_jar/IConfig.jar

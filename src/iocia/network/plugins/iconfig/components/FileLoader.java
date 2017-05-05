@@ -44,7 +44,7 @@ public abstract class FileLoader extends YamlConfiguration {
         if (subDirectories == null) {
             systemFile = new File(baseDirectory, fileExtender.toString());
         } else {
-            systemFile = new File(baseDirectory + File.separator + fileExtender.toString());
+            systemFile = new File(baseDirectory + File.separator + subDirectories, fileExtender.toString());
         }
         systemFile.getParentFile().mkdirs();
         isFirstLoad = systemFile.createNewFile();

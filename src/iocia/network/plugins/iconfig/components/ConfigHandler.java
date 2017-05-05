@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Manages the configuration data which is saved to and accessed from the system file.
@@ -56,12 +57,12 @@ public abstract class ConfigHandler extends FileLoader {
      * This means initial configuration files can be created with commented lines
      * anywhere and the exact order of the configuration options can be controlled.
      * @param internalFile InputStream of the internal jar file to copy.
-     * @param options Used to specify extra options when copying the file.
      * @throws IOException If an I/O error occurs while reading or writing.
-     * @see CopyOption for information regarding the extra options.
      */
-    public void copyPremadeConfig(InputStream internalFile, CopyOption... options) throws IOException, InvalidConfigurationException {
-        Files.copy(internalFile, Paths.get(systemFile.getAbsolutePath()), options);
+    public void copyPremadeConfig(InputStream internalFile) throws IOException, InvalidConfigurationException {
+        if (!isFirstLoad())
+            return;
+        Files.copy(internalFile, Paths.get(systemFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
         load(systemFile);
     }
 

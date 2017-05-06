@@ -19,9 +19,13 @@ public abstract class FileLoader extends YamlConfiguration {
 
     /*---Constructors---*/
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
+     * Using this constructor allows the possibility of creating configuration files
+     * which are located outside of the plugin's default directory.
+     *
      * @param baseDirectory Base-directory which acts as the master parent directory. Usually is the
      *                      directory given to each plugin by the Spigot server, but can be
      *                      altered to unify plugins under a single directory.
@@ -32,7 +36,7 @@ public abstract class FileLoader extends YamlConfiguration {
      *                 file type of the created files; this is to ensure all configuration files are created
      *                 as YAML files.
      * @throws IOException Thrown when either a directory or the file cannot be created.
-     * @throws InvalidConfigurationException Thrown if file has an invalid configuration.
+     * @throws InvalidConfigurationException Thrown if the file has an invalid configuration.
      */
     public FileLoader(File baseDirectory, String subDirectories, String fileName) throws IOException, InvalidConfigurationException {
         StringBuilder fileExtender = new StringBuilder(fileName);
@@ -40,7 +44,7 @@ public abstract class FileLoader extends YamlConfiguration {
         if (subDirectories == null) {
             systemFile = new File(baseDirectory, fileExtender.toString());
         } else {
-            systemFile = new File(baseDirectory + File.separator + fileExtender.toString());
+            systemFile = new File(baseDirectory + File.separator + subDirectories, fileExtender.toString());
         }
         systemFile.getParentFile().mkdirs();
         isFirstLoad = systemFile.createNewFile();
@@ -48,9 +52,13 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
+     * Using this constructor allows the possibility of creating configuration files
+     * which are located outside of the plugin's default directory.
+     *
      * @param baseDirectory Base-directory which acts as the master parent directory. Usually is the
      *                      directory given to each plugin by the Spigot server, but can be
      *                      altered to unify plugins under a single directory.
@@ -68,11 +76,12 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
      * @param plugin Instance of main class which extends JavaPlugin. Will ensure the
-     *               file is located within the folder created for the plugin.
+     *               file is located within the directory created for the plugin.
      * @param subDirectories Any sub-directories within the base-directory. Useful for organizing
      *                       many configuration files.
      * @param fileName File name of the configuration file. WILL automatically add a '.yml' extension
@@ -87,9 +96,13 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
+     * Using this constructor allows the possibility of creating configuration files
+     * which are located outside of the plugin's default directory.
+     *
      * @param baseDirectory Base-directory which acts as the master parent directory. Usually is the
      *                      directory given to each plugin by the Spigot server, but can be
      *                      altered to unify plugins under a single directory.
@@ -105,9 +118,13 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
+     * Using this constructor allows the possibility of creating configuration files
+     * which are located outside of the plugin's default directory.
+     *
      * @param baseDirectory Base-directory which acts as the master parent directory. Usually is the
      *                      directory given to each plugin by the Spigot server, but can be
      *                      altered to unify plugins under a single directory.
@@ -123,9 +140,10 @@ public abstract class FileLoader extends YamlConfiguration {
     }
 
     /**
-     * Attempts to create a new configuration file under the given file name.
-     * Will attempt create any required parent folders based on the given base-folder
-     * and sub-folders. Will NOT delete an already existing file or directory.
+     * Attempts to create a {@link File} object for the newly created configuration.
+     * If the physical system file does not exist, one will be created. Will NOT delete
+     * an already existing system file. Any required directories will also be created.
+     *
      * @param plugin Instance of main class which extends JavaPlugin. Will ensure the
      *               file is located within the folder created for the plugin.
      * @param fileName File name of the configuration file. WILL automatically add a '.yml' extension
@@ -144,6 +162,7 @@ public abstract class FileLoader extends YamlConfiguration {
     /**
      * Used to determine if the configuration file had been created
      * for the first time.
+     *
      * @return true if newly created; false if not.
      */
     public boolean isFirstLoad() {
